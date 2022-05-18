@@ -54,17 +54,21 @@ const NotePage = () => {
   }
 
   const handleSubmit = () => {
-    if (id !== "new" && note.body !== "") {
+    if (id !== "new" && note.body === "") {
       deleteNote();
     }
     else if (id !== "new") {
       editNote();
     }
-    else if (id === "new" && note !== null) {
+    else if (id === "new" && note.body !== null) {
       createNote();
     }
 
     navigate("/");
+  }
+
+  const handleChange = (value) => {
+    setNote({ ...note, "body": value });
   }
 
   return (
@@ -81,8 +85,8 @@ const NotePage = () => {
         )}
       </div>
 
-        <textarea onChange={(e) => { setNote({ ...note, 'body': e.target.value }) }} 
-                  defaultValue={ note?.body }>
+        <textarea onChange={(e) => { handleChange(e.target.value) }} 
+                  value={ note?.body }>
         </textarea>
 
     </div>
