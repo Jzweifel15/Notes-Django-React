@@ -27,7 +27,17 @@ const NotePage = () => {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(note)
-    })
+    });
+  }
+
+  const deleteNote = async () => {
+    fetch(`http://localhost:8000/api/notes/${id}/delete/`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      }
+    });
+    navigate("/");
   }
 
   const handleSubmit = () => {
@@ -41,6 +51,7 @@ const NotePage = () => {
         <h3>
           <ArrowLeft onClick={ handleSubmit } />
         </h3>
+        <button onClick={ deleteNote() }>Delete</button>
       </div>
         <textarea onChange={(e) => { setNote({ ...note, 'body': e.target.value }) }} 
                   defaultValue={ note?.body }>
