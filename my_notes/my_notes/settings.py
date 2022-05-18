@@ -125,7 +125,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIR = [
-    BASE_DIR / 'frontend/build/start'
+    BASE_DIR / 'frontend/build/static'
 ]
 
 # Default primary key field type
