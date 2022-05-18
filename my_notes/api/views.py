@@ -23,3 +23,16 @@ def getNote(request, pk):
     note = Note.objects.get(id=pk)
     serializer = NoteSerializer(note, many=False)
     return Response(serializer.data)
+
+
+# UPdate a single Note from DB
+@api_view(['PUT'])
+def editNote(request, pk):
+    data = request.data
+    note = Note.objects.get(id=pk)
+    serializer = NoteSerializer(instance=note, data=data)
+
+    if serializer.is_valid():
+        serializer.save()
+
+    return Response(serializer.data)
